@@ -19,6 +19,7 @@ const ServiceCard = () => {
             <p className="text-start">
               If a dog chews shoes whose shoes does he choose?
             </p>
+            <h3 className="font-bold text-xl mt-4 text-left">$20</h3>
             <div className="card-actions flex justify-between items-center">
               <span className="flex items-center text-yellow-300 font-semibold">
                 (4.2) <FaStar className="ml-1" />
