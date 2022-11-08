@@ -5,3 +5,14 @@
 .contact-body {
   font-family: "Red Hat Display", sans-serif;
 }
+
+.contact-container {
+  background: url("../../../Assets/images/bg/bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.image-overlay {
+  background: linear-gradient(to right, #151515 0%, rgba(21, 21, 21, 0) 100%);
+}

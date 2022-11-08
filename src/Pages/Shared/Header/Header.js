@@ -75,12 +75,14 @@ const Header = () => {
             </NavLink>
           </li>
         </ul>
-        <Link className="btn ml-3 hover:bg-slate-800">
+        <Link to="/signin" className="btn ml-3 hover:bg-slate-800">
           Sign In <AiOutlineLogout className="ml-2 text-xl" />
         </Link>
       </div>
       <div className="navbar-end lg:hidden">
-        <Link className="btn ml-3 hover:bg-slate-800">Sign In</Link>
+        <Link to="/signin" className="btn ml-3 hover:bg-slate-800">
+          Sign In
+        </Link>
       </div>
     </div>
   );
