@@ -1,8 +1,18 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import logo from "../../../Assets/logos/icons8-slr-large-lens-96.png";
+import "./Header.css";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const Header = () => {
+  const activeStyle = {
+    fontWeight: "bold",
+    color: "black",
+    background: "#d1d5db",
+  };
+
   return (
-    <div className="navbar bg-stone-100">
+    <div className="navbar bg-stone-100 text-black h-28 header">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -26,34 +36,51 @@ const Header = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a href="/">Services</a>
+              <Link>Services</Link>
             </li>
             <li>
-              <a href="/">Blog</a>
+              <Link>Blog</Link>
             </li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost normal-case text-xl">
-          daisyUI
-        </a>
+        <Link
+          to="/"
+          className="btn btn-ghost normal-case text-xl hover:bg-transparent logo"
+        >
+          <img className="w-16" src={logo} alt="" />
+          <div className="flex flex-col text-start text-sky-800">
+            <p className="text-4xl">Photography</p>
+            <span className="text-lg">Live your memories!</span>
+          </div>
+        </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <a href="/">Services</a>
+            <NavLink
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              className="hover:bg-gray-300 hover:font-bold ml-3"
+              to="/services"
+            >
+              Services
+            </NavLink>
           </li>
           <li>
-            <a href="/">Blog</a>
+            <NavLink
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+              className="hover:bg-gray-300 hover:font-bold ml-3"
+              to="/blog"
+            >
+              Blog
+            </NavLink>
           </li>
         </ul>
-        <a href="/" className="btn">
-          Get started
-        </a>
+        <Link className="btn ml-3 hover:bg-slate-800">
+          Sign In <AiOutlineLogout className="ml-2 text-xl" />
+        </Link>
       </div>
       <div className="navbar-end lg:hidden">
-        <a href="/" className="btn">
-          Get started
-        </a>
+        <Link className="btn">Sign In</Link>
       </div>
     </div>
   );

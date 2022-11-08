@@ -1,0 +1,20 @@
+.header {
+  font-family: "Red Hat Display", sans-serif;
+}
+
+.logo {
+  font-family: "Poor Story", cursive;
+}
+
+.cool-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width 0.3s;
+}
+
+.cool-link:hover::after {
+  width: 100%;
+}
