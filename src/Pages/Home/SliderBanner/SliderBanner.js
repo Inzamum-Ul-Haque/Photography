@@ -33,7 +33,7 @@ const SliderBanner = () => {
   ];
 
   return (
-    <Swiper className="max-w-screen-xl mySwiper">
+    <Swiper className="max-w-screen-xl mx-auto mySwiper">
       {bannerImages.map((bannerImage, idx) => (
         <SwiperSlide className="carousel-img" key={idx}>
           <img className="rounded-2xl" src={bannerImage.img} alt="" />

@@ -80,7 +80,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-end lg:hidden">
-        <Link className="btn">Sign In</Link>
+        <Link className="btn ml-3 hover:bg-slate-800">Sign In</Link>
       </div>
     </div>
   );
