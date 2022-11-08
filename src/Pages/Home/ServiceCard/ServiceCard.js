@@ -54,7 +54,7 @@ const ServiceCard = () => {
           </div>
         </div>
       </div>
-      <button className="btn btn-primary mt-12 bg-slate-900 border-slate-900 hover:bg-slate-700 hover:border-slate-700">
+      <button className="btn btn-primary mt-12 mb-12 bg-slate-900 border-slate-900 hover:bg-slate-700 hover:border-slate-700">
         See All
       </button>
     </div>
