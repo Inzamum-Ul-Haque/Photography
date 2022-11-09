@@ -1,6 +1,7 @@
 import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const SingleService = ({ service }) => {
   return (
@@ -23,9 +24,11 @@ const SingleService = ({ service }) => {
             {service.rating === null ? "Not rated yet" : service.rating}{" "}
             <FaStar className="ml-1" />
           </span>
-          <button className="btn border-slate-800 bg-white text-black hover:bg-slate-800 hover:text-white">
-            Details <FiArrowRight className="ml-1 font-bold text-xl" />
-          </button>
+          <Link to={`/services/${service._id}`}>
+            <button className="btn border-slate-800 bg-white text-black hover:bg-slate-800 hover:text-white">
+              Details <FiArrowRight className="ml-1 font-bold text-xl" />
+            </button>
+          </Link>
         </div>
       </div>
     </div>
