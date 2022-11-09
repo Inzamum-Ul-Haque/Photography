@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import "./ServiceDetails.css";
 import { FaStar } from "react-icons/fa";
+import ServiceReviews from "./ServiceReviews";
 
 const ServiceDetails = () => {
   const { data } = useLoaderData();
@@ -17,7 +18,7 @@ const ServiceDetails = () => {
       <div className="flex justify-between items-center">
         <h1 className="text-5xl mt-8 mb-8 text-start">{data.serviceName}</h1>
         <p className="text-2xl text-yellow-800 flex">
-          {data.rating} <FaStar className="mt-1" />
+          {data.rating} <FaStar className="mt-1 ml-1" />
         </p>
       </div>
       <div>
@@ -26,6 +27,7 @@ const ServiceDetails = () => {
         </h3>
         <p className="text-start font-semibold text-xl">{data.desc}</p>
       </div>
+      <ServiceReviews />
     </div>
   );
 };
