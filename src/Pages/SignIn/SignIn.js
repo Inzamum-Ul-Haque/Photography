@@ -4,12 +4,14 @@ import "./SignIn.css";
 import { AiFillLock } from "react-icons/ai";
 import google from "../../Assets/logos/icons8-google-94.png";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const SignIn = () => {
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, providerLogin } = useContext(AuthContext);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const googleProvider = new GoogleAuthProvider();
   const from = location.state?.from?.pathname || "/";
 
   const handleSignIn = (event) => {
@@ -26,6 +28,16 @@ const SignIn = () => {
       .catch((error) => {
         console.error(error);
         setError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -108,7 +120,10 @@ const SignIn = () => {
             <span className="font-medium ml-1">Sign in using</span>
           </p>
         </form>
-        <button className="border border-gray-400 p-3 rounded-full hover:bg-gray-200">
+        <button
+          onClick={handleGoogleSignIn}
+          className="border border-gray-400 p-3 rounded-full hover:bg-gray-200"
+        >
           <img className="w-10" src={google} alt="" />
         </button>
       </div>
