@@ -12,7 +12,7 @@ const Registration = () => {
   const handleCreateUser = (event) => {
     event.preventDefault();
     const form = event.target;
-    const fullname = form.fullname.value;
+    // const fullname = form.fullname.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
@@ -24,12 +24,11 @@ const Registration = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
         form.reset();
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setError(error.message);
       });
   };
@@ -87,6 +86,7 @@ const Registration = () => {
                 className="relative block w-full appearance-none rounded-sm border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 mb-3"
                 placeholder="Confirm Password"
               />
+              <p className="text-red-600 text-base text-left mb-2">{error}</p>
             </div>
             <div className="flex items-center">
               <input

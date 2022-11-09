@@ -1,9 +1,34 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./SignIn.css";
+import { AiFillLock } from "react-icons/ai";
 import google from "../../Assets/logos/icons8-google-94.png";
+import { AuthContext } from "../../Contexts/AuthProvider";
 
 const SignIn = () => {
+  const { signInUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signInUser(email, password)
+      .then((result) => {
+        form.reset();
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="flex min-h-full items-center justify-center py-12 px-4 mt-10 mb-10 sm:px-6 lg:px-8 signin-container">
       <div className="w-full max-w-md space-y-8 border border-gray-500 rounded-md p-12 shadow-2xl">
@@ -21,13 +46,11 @@ const SignIn = () => {
             </Link>
           </p>
         </div>
-        <form className="mt-8 space-y-6">
+        <form onSubmit={handleSignIn} className="mt-8 space-y-6">
           <input type="hidden" name="remember" value="true" />
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
-              <label for="email-address" className="sr-only">
-                Email address
-              </label>
+              <label className="sr-only">Email address</label>
               <input
                 name="email"
                 type="email"
@@ -37,9 +60,7 @@ const SignIn = () => {
               />
             </div>
             <div>
-              <label for="password" className="sr-only">
-                Password
-              </label>
+              <label className="sr-only">Password</label>
               <input
                 name="password"
                 type="password"
@@ -48,19 +69,17 @@ const SignIn = () => {
                 placeholder="Password"
               />
             </div>
+            <p className="text-red-600 text-base text-left mb-2">{error}</p>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
-                id="remember-me"
                 name="remember-me"
                 type="checkbox"
                 className="h-4 w-4 rounded border-gray-300 text-slate-900 focus:text-slate-900"
               />
-              <label for="remember-me" className="ml-2 block text-sm ">
-                Remember me
-              </label>
+              <label className="ml-2 block text-sm ">Remember me</label>
             </div>
 
             <div className="text-sm">
@@ -79,18 +98,7 @@ const SignIn = () => {
               className="group relative flex w-full justify-center rounded-md border border-transparent bg-slate-900 py-2 px-4 text-sm font-medium text-white hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <svg
-                  className="h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                <AiFillLock />
               </span>
               Sign in
             </button>

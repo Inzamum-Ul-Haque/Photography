@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../../Assets/logos/icons8-slr-large-lens-96.png";
 import "./Header.css";
 import { AiOutlineLogout } from "react-icons/ai";
@@ -7,11 +7,23 @@ import { FaSignInAlt } from "react-icons/fa";
 import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const activeStyle = {
     fontWeight: "bold",
     color: "black",
     background: "#d1d5db",
+  };
+
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -47,10 +59,10 @@ const Header = () => {
             {user ? (
               <>
                 <li>
-                  <Link>Add Service</Link>
+                  <Link to="/add-service">Add Service</Link>
                 </li>
                 <li>
-                  <Link>MyReviews</Link>
+                  <Link to="/my-reviews">MyReviews</Link>
                 </li>
               </>
             ) : (
@@ -115,7 +127,10 @@ const Header = () => {
           )}
         </ul>
         {user ? (
-          <button className="btn ml-3 hover:bg-slate-800">
+          <button
+            onClick={handleSignOut}
+            className="btn ml-3 hover:bg-slate-800"
+          >
             Log Out <AiOutlineLogout className="ml-2 text-xl" />
           </button>
         ) : (
@@ -126,7 +141,10 @@ const Header = () => {
       </div>
       <div className="navbar-end lg:hidden">
         {user ? (
-          <button className="btn ml-3 hover:bg-slate-800">
+          <button
+            onClick={handleSignOut}
+            className="btn ml-3 hover:bg-slate-800"
+          >
             Log Out <AiOutlineLogout className="ml-2 text-xl" />
           </button>
         ) : (
