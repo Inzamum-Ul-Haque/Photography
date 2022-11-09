@@ -2,10 +2,14 @@ import React from "react";
 import "./MyReviews.css";
 import { AiOutlineEdit } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import useTitle from "../../Hooks/useTitle";
 // import { AuthContext } from "../../Contexts/AuthProvider";
 
 const MyReviews = () => {
   // const {user} = useContext(AuthContext)
+
+  useTitle("My Reviews");
+
   return (
     <div className="my-reviews">
       <h1 className="text-5xl text-center mb-10 mt-10 services-header font-bold">

@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
+import useTitle from "../../Hooks/useTitle";
 
 const Registration = () => {
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  useTitle("Registration");
 
   const handleCreateUser = (event) => {
     event.preventDefault();

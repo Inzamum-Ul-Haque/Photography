@@ -1,7 +1,10 @@
 import React from "react";
+import useTitle from "../../Hooks/useTitle";
 import "./AddService.css";
 
 const AddService = () => {
+  useTitle("Add Service");
+
   return (
     <div className="mt-16 mb-16">
       <h1 className="text-5xl text-center mb-10 mt-10 services-header font-bold">

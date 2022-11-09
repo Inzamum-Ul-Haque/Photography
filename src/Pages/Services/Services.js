@@ -2,10 +2,11 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import SingleService from "./SingleService";
 import "./Services.css";
+import useTitle from "../../Hooks/useTitle";
 
 const Services = () => {
   const { data } = useLoaderData();
-  console.log(data);
+  useTitle("Services");
 
   return (
     <div className="max-w-screen-xl mx-auto mt-10 mb-10">

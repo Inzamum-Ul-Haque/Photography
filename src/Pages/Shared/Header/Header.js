@@ -109,7 +109,7 @@ const Header = () => {
                   style={({ isActive }) => (isActive ? activeStyle : undefined)}
                   className="hover:bg-gray-300 hover:font-bold ml-3"
                 >
-                  Add Services
+                  Add Service
                 </NavLink>
               </li>
               <li>

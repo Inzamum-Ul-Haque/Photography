@@ -5,6 +5,7 @@ import { AiFillLock } from "react-icons/ai";
 import google from "../../Assets/logos/icons8-google-94.png";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
+import useTitle from "../../Hooks/useTitle";
 
 const SignIn = () => {
   const { signInUser, providerLogin } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const SignIn = () => {
   const location = useLocation();
   const googleProvider = new GoogleAuthProvider();
   const from = location.state?.from?.pathname || "/";
+  useTitle("Sign In");
 
   const handleSignIn = (event) => {
     event.preventDefault();

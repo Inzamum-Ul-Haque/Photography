@@ -1,8 +1,11 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
+import useTitle from "../../Hooks/useTitle";
 import "./Blog.css";
 
 const Blog = () => {
+  useTitle("Blog");
+
   return (
     <div className="max-w-screen-xl mx-auto mb-10">
       <h1 className="text-5xl text-center mb-10 mt-10 services-header font-bold">
