@@ -20,7 +20,8 @@ const ServiceDetails = () => {
       <div className="flex justify-between items-center">
         <h1 className="text-5xl mt-8 mb-8 text-start">{data.serviceName}</h1>
         <p className="text-2xl text-yellow-800 flex">
-          {data.rating} <FaStar className="mt-1 ml-1" />
+          {data.rating === 0 ? "Not rated yet" : data.rating}{" "}
+          <FaStar className="mt-1 ml-1" />
         </p>
       </div>
       <div>

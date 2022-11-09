@@ -39,7 +39,7 @@ const ServiceCard = () => {
               </h3>
               <div className="card-actions flex justify-between items-center">
                 <span className="flex items-center text-yellow-300 font-semibold">
-                  {service.rating === null ? "Not rated yet" : service.rating}{" "}
+                  {service.rating === 0 ? "Not rated yet" : service.rating}{" "}
                   <FaStar className="ml-1" />
                 </span>
                 <Link to={`/services/${service._id}`}>
