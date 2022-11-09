@@ -32,7 +32,9 @@ const MyReviews = () => {
               <td className="text-gray-500 font-bold">This is a very good..</td>
               <td className="text-gray-500 font-bold">12/16/2020</td>
               <td>
-                <AiOutlineEdit className="text-xl cursor-pointer text-gray-600 hover:text-slate-900" />
+                <label htmlFor="my-edit-modal">
+                  <AiOutlineEdit className="text-xl cursor-pointer text-gray-600 hover:text-slate-900" />
+                </label>
               </td>
               <td>
                 <MdDelete className="text-xl cursor-pointer text-gray-600 hover:text-red-600" />
@@ -41,6 +43,25 @@ const MyReviews = () => {
           </tbody>
         </table>
       </div>
+
+      {/* edit modal */}
+      <>
+        <input type="checkbox" id="my-edit-modal" className="modal-toggle" />
+        <div className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">edit</h3>
+            <p className="py-4">
+              You've been selected for a chance to get one year of subscription
+              to use Wikipedia for free!
+            </p>
+            <div className="modal-action">
+              <label htmlFor="my-edit-modal" className="btn">
+                Yay!
+              </label>
+            </div>
+          </div>
+        </div>
+      </>
     </div>
   );
 };
