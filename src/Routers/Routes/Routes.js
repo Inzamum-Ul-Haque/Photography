@@ -23,6 +23,9 @@ const routes = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
+        loader: () => {
+          return fetch("http://localhost:5000/services");
+        },
       },
       {
         path: "/services/:id",
