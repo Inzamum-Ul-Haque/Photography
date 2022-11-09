@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../../Assets/logos/icons8-slr-large-lens-96.png";
 import "./Header.css";
 import { AiOutlineLogout } from "react-icons/ai";
+import { FaSignInAlt } from "react-icons/fa";
+import { AuthContext } from "../../../Contexts/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
   const activeStyle = {
     fontWeight: "bold",
     color: "black",
@@ -36,11 +39,23 @@ const Header = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <Link>Services</Link>
+              <Link to="/services">Services</Link>
             </li>
             <li>
-              <Link>Blog</Link>
+              <Link to="/blog">Blog</Link>
             </li>
+            {user ? (
+              <>
+                <li>
+                  <Link>Add Service</Link>
+                </li>
+                <li>
+                  <Link>MyReviews</Link>
+                </li>
+              </>
+            ) : (
+              <></>
+            )}
           </ul>
         </div>
         <Link
@@ -74,15 +89,51 @@ const Header = () => {
               Blog
             </NavLink>
           </li>
+          {user ? (
+            <>
+              <li>
+                <NavLink
+                  to="/add-service"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  className="hover:bg-gray-300 hover:font-bold ml-3"
+                >
+                  Add Services
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/my-reviews"
+                  style={({ isActive }) => (isActive ? activeStyle : undefined)}
+                  className="hover:bg-gray-300 hover:font-bold ml-3"
+                >
+                  My Reviews
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <></>
+          )}
         </ul>
-        <Link to="/signin" className="btn ml-3 hover:bg-slate-800">
-          Sign In <AiOutlineLogout className="ml-2 text-xl" />
-        </Link>
+        {user ? (
+          <button className="btn ml-3 hover:bg-slate-800">
+            Log Out <AiOutlineLogout className="ml-2 text-xl" />
+          </button>
+        ) : (
+          <Link to="/signin" className="btn ml-3 hover:bg-slate-800">
+            Sign In <FaSignInAlt className="ml-2 text-xl" />
+          </Link>
+        )}
       </div>
       <div className="navbar-end lg:hidden">
-        <Link to="/signin" className="btn ml-3 hover:bg-slate-800">
-          Sign In
-        </Link>
+        {user ? (
+          <button className="btn ml-3 hover:bg-slate-800">
+            Log Out <AiOutlineLogout className="ml-2 text-xl" />
+          </button>
+        ) : (
+          <Link to="/signin" className="btn ml-3 hover:bg-slate-800">
+            Sign In <FaSignInAlt className="ml-2 text-xl" />
+          </Link>
+        )}
       </div>
     </div>
   );
