@@ -20,7 +20,10 @@ const ServiceCard = () => {
       </h1>
       <div className="grid justify-items-center xl:grid-cols-3 xl:gap-8 lg:grid-cols-2 lg:gap-8 md:grid-cols-2 md:gap-8 sm:grid-cols-1 gap-8 sm:gap-4">
         {topServices.map((service) => (
-          <div className="card w-96 bg-base-100 shadow-xl image-full">
+          <div
+            key={service._id}
+            className="card w-96 bg-base-100 shadow-xl image-full"
+          >
             <figure>
               <img src={service.image} alt="" />
             </figure>
