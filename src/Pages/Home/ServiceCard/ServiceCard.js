@@ -2,6 +2,7 @@ import React from "react";
 import "./ServiceCard.css";
 import { FaStar } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const ServiceCard = () => {
   return (
@@ -55,9 +56,11 @@ const ServiceCard = () => {
           </div>
         </div>
       </div>
-      <button className="btn btn-primary mt-12 mb-12 bg-slate-900 border-slate-900 hover:bg-slate-700 hover:border-slate-700">
-        See All
-      </button>
+      <Link to="/services">
+        <button className="btn btn-primary mt-12 mb-12 bg-slate-900 border-slate-900 hover:bg-slate-700 hover:border-slate-700">
+          See All
+        </button>
+      </Link>
     </div>
   );
 };
