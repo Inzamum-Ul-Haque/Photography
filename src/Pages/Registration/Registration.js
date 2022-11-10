@@ -7,14 +7,15 @@ import useTitle from "../../Hooks/useTitle";
 const Registration = () => {
   const [accepted, setAccepted] = useState(false);
   const [error, setError] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   useTitle("Registration");
 
   const handleCreateUser = (event) => {
     event.preventDefault();
     const form = event.target;
-    // const fullname = form.fullname.value;
+    const fullname = form.fullname.value;
+    const photoUrl = form.photoUrl.value;
     const email = form.email.value;
     const password = form.password.value;
     const confirmPassword = form.confirmPassword.value;
@@ -27,12 +28,27 @@ const Registration = () => {
     createUser(email, password)
       .then((result) => {
         form.reset();
+        updateUserData(fullname, photoUrl);
         navigate("/");
       })
       .catch((error) => {
         console.error(error);
         setError(error.message);
       });
+
+    const updateUserData = (fullName, photoUrl) => {
+      const profile = {
+        displayName: fullName,
+        photoURL: photoUrl,
+      };
+
+      updateUserProfile(profile)
+        .then(() => {})
+        .catch((error) => {
+          console.error(error);
+          setError(error.message);
+        });
+    };
   };
 
   const handleAccepted = (event) => {
@@ -57,6 +73,15 @@ const Registration = () => {
                 required
                 className="relative block w-full appearance-none rounded-sm border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 mb-3"
                 placeholder="Your fullname"
+              />
+            </div>
+            <div>
+              <label className="sr-only">Photo URL</label>
+              <input
+                name="photoUrl"
+                type="text"
+                className="relative block w-full appearance-none rounded-sm border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 mb-3"
+                placeholder="Paste your photo url link"
               />
             </div>
             <div>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import img from "../../Assets/images/clients/img-1.jpg";
+import img from "../../Assets/images/clients/pngwing.com.png";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,15 +9,17 @@ import "react-toastify/dist/ReactToastify.css";
 const ServiceReviews = ({ data }) => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  const [comment, setComment] = useState("");
 
   const handlePostReview = (event) => {
     event.preventDefault();
     const review = event.target.review.value;
+    setComment(review);
 
     const newReview = {
       service_id: data._id,
       serviceName: data.serviceName,
-      useremail: user.email,
+      username: user.displayName,
       userId: user.uid,
       userImage: user.photoURL,
       review: review,
@@ -46,7 +48,7 @@ const ServiceReviews = ({ data }) => {
       .then((res) => res.json())
       .then((data) => setReviews(data.data))
       .catch((error) => console.error(error));
-  }, [data._id]);
+  }, [data._id, comment]);
 
   return (
     <div>
@@ -67,7 +69,7 @@ const ServiceReviews = ({ data }) => {
               <div className="avatar mr-5">
                 {review.userImage ? (
                   <div className="w-16 rounded-full">
-                    <img src={reviews.userImage} alt="" />
+                    <img src={review.userImage} alt="" />
                   </div>
                 ) : (
                   <div className="w-16 rounded-full">
@@ -76,7 +78,7 @@ const ServiceReviews = ({ data }) => {
                 )}
               </div>
               <div>
-                <h4 className="text-xl">{review.useremail}</h4>
+                <h4 className="text-xl text-start">{review.username}</h4>
                 <p className="text-gray-500 text-sm text-start">
                   {review.reviewedAt}
                 </p>

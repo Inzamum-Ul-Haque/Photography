@@ -2,6 +2,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import useTitle from "../../Hooks/useTitle";
 import "./AddService.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddService = () => {
   useTitle("Add Service");
@@ -107,6 +109,18 @@ const AddService = () => {
           Add Service
         </button>
       </form>
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };
