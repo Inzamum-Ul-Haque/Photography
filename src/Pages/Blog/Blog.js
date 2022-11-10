@@ -61,7 +61,7 @@ const Blog = () => {
         <h1 className="text-2xl mb-5 italic">
           What is the difference between javascript and NodeJS?
         </h1>
-        <p className="text-xl flex">
+        <div className="text-xl flex">
           <FaArrowRight className="mt-1 mr-3 text-xl" />
           <ul>
             <li>
@@ -84,7 +84,7 @@ const Blog = () => {
               node.js that parses and runs Javascript.{" "}
             </li>
           </ul>
-        </p>
+        </div>
       </div>
       <div className="p-5 bg-slate-900 text-white shadow-2xl rounded-lg text-start blog-container mb-10">
         <h1 className="text-2xl mb-5 italic">

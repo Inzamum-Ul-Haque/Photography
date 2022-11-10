@@ -36,6 +36,7 @@ const AddService = () => {
       .then((data) => {
         if (data.status) {
           toast.success(data.message);
+          form.reset();
         } else {
           toast.error(data.message);
         }

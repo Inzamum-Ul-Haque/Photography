@@ -6,15 +6,30 @@ import useTitle from "../../Hooks/useTitle";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, signOutUser } = useContext(AuthContext);
   const [myReviews, setMyReviews] = useState([]);
   useTitle("My Reviews");
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/myReviews/${user?.email}`, {
+  //     headers: {
+  //       authorization: `Bearer ${localStorage.getItem("token")}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (res.status === 401 || res.status === 403) {
+  //         return signOutUser();
+  //       }
+  //       return res.json();
+  //     })
+  //     .then((data) => console.log(data));
+  // }, [user?.email, signOutUser]);
 
   useEffect(() => {
     fetch(`http://localhost:5000/myReviews/${user.uid}`)
       .then((res) => res.json())
       .then((data) => setMyReviews(data.data));
-  });
+  }, [user.uid, signOutUser]);
 
   return (
     <div className="my-reviews">
@@ -41,15 +56,15 @@ const MyReviews = () => {
               {myReviews.map((review) => (
                 <tr key={review._id}>
                   <td className="text-gray-500 font-bold">
-                    {review.serviceName}
+                    {review?.serviceName}
                   </td>
                   <td className="text-gray-500 font-bold">
-                    {review.review.length > 20
-                      ? review.review.slice(0, 20) + "..."
-                      : review.review}
+                    {review?.review.length > 20
+                      ? review?.review.slice(0, 20) + "..."
+                      : review?.review}
                   </td>
                   <td className="text-gray-500 font-bold">
-                    {review.reviewedAt}
+                    {review?.reviewedAt}
                   </td>
                   <td>
                     <label htmlFor="my-edit-modal">

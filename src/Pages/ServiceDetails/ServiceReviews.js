@@ -9,12 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 const ServiceReviews = ({ data }) => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
-  const [comment, setComment] = useState("");
 
   const handlePostReview = (event) => {
     event.preventDefault();
     const review = event.target.review.value;
-    setComment(review);
 
     const newReview = {
       service_id: data._id,
@@ -23,7 +21,7 @@ const ServiceReviews = ({ data }) => {
       userId: user.uid,
       userImage: user.photoURL,
       review: review,
-      reviewedAt: new Date(),
+      reviewedAt: new Date().toString(),
     };
 
     fetch("http://localhost:5000/addReview", {
@@ -37,6 +35,8 @@ const ServiceReviews = ({ data }) => {
       .then((data) => {
         if (data.status) {
           toast.success(data.message);
+          const newComment = [...reviews, newReview];
+          setReviews(newComment);
         } else {
           toast.error(data.message);
         }
@@ -48,7 +48,7 @@ const ServiceReviews = ({ data }) => {
       .then((res) => res.json())
       .then((data) => setReviews(data.data))
       .catch((error) => console.error(error));
-  }, [data._id, comment]);
+  }, [data._id]);
 
   return (
     <div>
@@ -105,6 +105,7 @@ const ServiceReviews = ({ data }) => {
         >
           <textarea
             name="review"
+            required
             className="textarea textarea-bordered w-full"
             placeholder="Add a review"
           ></textarea>

@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
 
   const signOutUser = () => {
     setLoading(true);
+    localStorage.removeItem("token");
     return signOut(auth);
   };
 

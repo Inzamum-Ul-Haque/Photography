@@ -27,9 +27,24 @@ const Registration = () => {
 
     createUser(email, password)
       .then((result) => {
-        form.reset();
-        updateUserData(fullname, photoUrl);
-        navigate("/");
+        const user = {
+          userEmail: result.user.email,
+        };
+
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("token", data.token);
+            form.reset();
+            updateUserData(fullname, photoUrl);
+            navigate("/");
+          });
       })
       .catch((error) => {
         console.error(error);

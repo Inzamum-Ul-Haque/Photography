@@ -19,6 +19,7 @@ const Header = () => {
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
+        localStorage.removeItem("token");
         navigate("/signin");
       })
       .catch((error) => {
