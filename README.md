@@ -1,3 +1,19 @@
+# Project name: Photography : Hire for Photography Services
+
+A photography service website where user can create their desired services and provide them to their clients. Every registered user make their photography services and can share about the features of it through this website.
+
+## Features
+
+- Everyone can sign up with their account and view the services of other users.
+- It has email-password and google authentication system.
+- People can see all kind of services in the services page.
+- To create a service, a user have to have a registered account. After that, he/she can make the services and post it.
+- You can share your valuable review for a service by commenting below the service you want to review. But you have to login to the website to comment.
+- You can see all of your reviews of the services in the My Reviews page.
+- The project is implemented with JWT token system so that any unauthorized user can't see any of your data.
+- You can edit your posted comment in the My Reviews page.
+- You can also delete the comment.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -2,12 +2,18 @@ import React from "react";
 import { FaStar } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const SingleService = ({ service }) => {
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure>
-        <img src={service.image} alt="" />
+        <PhotoProvider>
+          <PhotoView src={service.image}>
+            <img className="cursor-pointer" src={service.image} alt="" />
+          </PhotoView>
+        </PhotoProvider>
       </figure>
       <div className="card-body">
         <h2 className="card-title text-2xl">{service.serviceName}</h2>

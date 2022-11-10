@@ -49,10 +49,10 @@ const Reviews = () => {
             <FaRegStar />
           </div>
           <p className="text-lg">
-            কাজ বেশ ভালো ছিল। তারা তাদের কাজের ব্যাপারে খুবই দক্ষ এবং আমার কাছে
-            তাদের কাজ ভালো লেগেছে, এমনকি কন্টাক্ট থেকে শুরু করে ফাইনাল সার্ভিস
-            দেওয়া পর্যন্ত তারা অনেক আন্তরিক ছিল। আউট অফ ১০ আমি ৭ জনকে সাজেস্ট
-            করবো এই সার্ভিস টি নেওার জন্য। তাদের জন্য শুভ কামনা রইলো।
+            Work was pretty good. They are very good at their job and to me.
+            Loved their work, even from contact to final service. They were very
+            sincere until giving. Out of 10 I will recommend 7 people for this
+            service. I will do to take this service. Best wishes to them.
           </p>
         </div>
         <div className="bg-stone-300 p-6 review-card rounded-lg shadow-2xl">

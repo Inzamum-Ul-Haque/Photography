@@ -12,7 +12,8 @@ const ServiceReviews = ({ data }) => {
 
   const handlePostReview = (event) => {
     event.preventDefault();
-    const review = event.target.review.value;
+    const form = event.target;
+    const review = form.review.value;
 
     const newReview = {
       service_id: data._id,
@@ -37,6 +38,7 @@ const ServiceReviews = ({ data }) => {
           toast.success(data.message);
           const newComment = [...reviews, newReview];
           setReviews(newComment);
+          form.reset();
         } else {
           toast.error(data.message);
         }
@@ -57,7 +59,7 @@ const ServiceReviews = ({ data }) => {
       </h1>
       {reviews.length === 0 ? (
         <p className="text-start text-xl font-semibold text-gray-500">
-          No reviews were added!
+          Not reviewed!
         </p>
       ) : (
         reviews.map((review) => (
@@ -69,7 +71,7 @@ const ServiceReviews = ({ data }) => {
               <div className="avatar mr-5">
                 {review.userImage ? (
                   <div className="w-16 rounded-full">
-                    <img src={review.userImage} alt="" />
+                    <img src={review?.userImage} alt="" />
                   </div>
                 ) : (
                   <div className="w-16 rounded-full">
@@ -78,9 +80,9 @@ const ServiceReviews = ({ data }) => {
                 )}
               </div>
               <div>
-                <h4 className="text-xl text-start">{review.username}</h4>
+                <h4 className="text-xl text-start">{review?.username}</h4>
                 <p className="text-gray-500 text-sm text-start">
-                  {review.reviewedAt}
+                  {review.reviewedAt.slice(0, 24)}
                 </p>
               </div>
             </div>
