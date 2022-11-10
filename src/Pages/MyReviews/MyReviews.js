@@ -24,13 +24,16 @@ const MyReviews = () => {
       reviewedAt: new Date().toString(),
     };
 
-    fetch(`http://localhost:5000/review/${updateId}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedReview),
-    })
+    fetch(
+      `https://service-review-server-seven-tau.vercel.app/review/${updateId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedReview),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.status) {
@@ -53,7 +56,7 @@ const MyReviews = () => {
   const handleDeleteReview = (id) => {
     const proceed = window.confirm("Do you want to delete this review?");
     if (proceed) {
-      fetch(`http://localhost:5000/review/${id}`, {
+      fetch(`https://service-review-server-seven-tau.vercel.app/review/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -77,7 +80,7 @@ const MyReviews = () => {
 
   useEffect(() => {
     fetch(
-      `http://localhost:5000/myReviews?uid=${user.uid}&email=${user.email}`,
+      `https://service-review-server-seven-tau.vercel.app/myReviews?uid=${user.uid}&email=${user.email}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("token")}`,

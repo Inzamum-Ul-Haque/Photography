@@ -8,7 +8,7 @@ const ServiceCard = () => {
   const [topServices, setTopServices] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/topServices")
+    fetch("https://service-review-server-seven-tau.vercel.app/topServices")
       .then((res) => res.json())
       .then((data) => setTopServices(data.data));
   });

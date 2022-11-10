@@ -25,7 +25,7 @@ const ServiceReviews = ({ data }) => {
       reviewedAt: new Date().toString(),
     };
 
-    fetch("http://localhost:5000/addReview", {
+    fetch("https://service-review-server-seven-tau.vercel.app/addReview", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -46,7 +46,9 @@ const ServiceReviews = ({ data }) => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${data._id}`)
+    fetch(
+      `https://service-review-server-seven-tau.vercel.app/review/${data._id}`
+    )
       .then((res) => res.json())
       .then((data) => setReviews(data.data))
       .catch((error) => console.error(error));

@@ -24,14 +24,18 @@ const routes = createBrowserRouter([
         path: "/services",
         element: <Services />,
         loader: () => {
-          return fetch("http://localhost:5000/services");
+          return fetch(
+            "https://service-review-server-seven-tau.vercel.app/services"
+          );
         },
       },
       {
         path: "/services/:id",
         element: <ServiceDetails />,
         loader: ({ params }) => {
-          return fetch(`http://localhost:5000/services/${params.id}`);
+          return fetch(
+            `https://service-review-server-seven-tau.vercel.app/services/${params.id}`
+          );
         },
       },
       {

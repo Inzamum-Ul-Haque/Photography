@@ -28,7 +28,7 @@ const SignIn = () => {
           userEmail: result.user.email,
         };
 
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://service-review-server-seven-tau.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
