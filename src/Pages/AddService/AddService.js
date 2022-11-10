@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import useTitle from "../../Hooks/useTitle";
 import "./AddService.css";
 
@@ -21,7 +22,23 @@ const AddService = () => {
       price: price,
       desc: desc,
     };
-    console.log(newService);
+
+    fetch("http://localhost:5000/addService", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newService),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status) {
+          toast.success(data.message);
+        } else {
+          toast.error(data.message);
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

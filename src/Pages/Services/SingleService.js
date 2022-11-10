@@ -21,7 +21,7 @@ const SingleService = ({ service }) => {
         </h3>
         <div className="card-actions flex justify-between items-center">
           <span className="flex items-center text-yellow-800 text-xl font-semibold">
-            {service.rating === null ? "Not rated yet" : service.rating}{" "}
+            {service.rating === 0 ? "Not rated yet" : service.rating}{" "}
             <FaStar className="ml-1" />
           </span>
           <Link to={`/services/${service._id}`}>

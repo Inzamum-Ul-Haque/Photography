@@ -30,7 +30,7 @@ const ServiceDetails = () => {
         </h3>
         <p className="text-start font-semibold text-xl">{data.desc}</p>
       </div>
-      <ServiceReviews />
+      <ServiceReviews data={data} />
     </div>
   );
 };
