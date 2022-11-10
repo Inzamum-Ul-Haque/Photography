@@ -14,9 +14,20 @@ const Services = () => {
         Available Services
       </h1>
       <div className="services-container grid justify-items-center xl:grid-cols-3 xl:gap-8 lg:grid-cols-2 lg:gap-8 md:grid-cols-2 md:gap-8 sm:grid-cols-1 gap-8 sm:gap-4">
-        {data.map((service) => (
-          <SingleService key={service._id} service={service} />
-        ))}
+        {data.length === 0 ? (
+          <div className="flex justify-center items-center">
+            <div
+              className="spinner-grow inline-block w-8 h-8 bg-current rounded-full opacity-0"
+              role="status"
+            >
+              <span className="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        ) : (
+          data.map((service) => (
+            <SingleService key={service._id} service={service} />
+          ))
+        )}
       </div>
     </div>
   );

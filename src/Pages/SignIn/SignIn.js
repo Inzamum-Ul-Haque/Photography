@@ -51,7 +51,21 @@ const SignIn = () => {
   const handleGoogleSignIn = () => {
     providerLogin(googleProvider)
       .then((result) => {
-        navigate(from, { replace: true });
+        const user = {
+          userEmail: result.user.email,
+        };
+        fetch("https://service-review-server-seven-tau.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(user),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          });
       })
       .catch((error) => {
         console.error(error);
